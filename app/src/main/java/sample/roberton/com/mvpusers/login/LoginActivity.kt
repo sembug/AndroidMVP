@@ -1,10 +1,12 @@
 package sample.roberton.com.mvpusers.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
 import sample.roberton.com.mvpusers.R
+import sample.roberton.com.mvpusers.main.MainActivity
 
 class LoginActivity : Activity(), LoginView, View.OnClickListener {
 
@@ -20,7 +22,7 @@ class LoginActivity : Activity(), LoginView, View.OnClickListener {
     }
 
     override fun onDestroy() {
-        presenter!!.onDestroy()
+        presenter.onDestroy()
         super.onDestroy()
     }
 
@@ -41,12 +43,12 @@ class LoginActivity : Activity(), LoginView, View.OnClickListener {
     }
 
     override fun navigateToHome() {
-//        val intent = Intent(context, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onClick(v: View) {
-        presenter!!.validateCredentials(username.text.toString(), password.text.toString())
+        presenter.validateCredentials(username.text.toString(), password.text.toString())
     }
 }

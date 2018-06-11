@@ -4,9 +4,7 @@ class LoginPresenterImpl(private var loginView: LoginView?, private val loginInt
         LoginPresenter, LoginInteractor.OnLoginFinishedListener {
 
     override fun validateCredentials(username: String, password: String) {
-        if (loginView != null) {
-            loginView!!.showProgress()
-        }
+        loginView?.let { it.showProgress() }
 
         loginInteractor.login(username, password, this)
     }
